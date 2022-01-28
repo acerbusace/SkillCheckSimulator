@@ -17,7 +17,7 @@ namespace SkillCheckSimulator
             // Use double buffering to remove flickering
             this.DoubleBuffered = true;
 
-            this.game = new Game(this.scoreLabel, this.infoLabel);
+            this.game = new Game(this.scoreLabel, this.messageLabel, this.greatSkillCheckStreakCountLabel, this.goodSkillCheckStreakCountLabel, this.greatSkillCheckCountLabel, this.goodSkillCheckCountLabel);
 
             var hexHuntressLullabyMappingKeys = this.game.CurrentSettings.HexHuntressLullabyMapping.Keys.ToList();
             hexHuntressLullabyMappingKeys.Sort();

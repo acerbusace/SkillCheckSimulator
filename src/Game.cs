@@ -23,7 +23,17 @@ namespace SkillCheckSimulator
 
         private int score;
         private Label scoreLabel;
-        private Label infoLabel;
+
+        private Label messageLabel;
+
+        private int greatSkillCheckStreakCount;
+        private Label greatSkillCheckStreakCountLabel;
+        private int goodSkillCheckStreakCount;
+        private Label goodSkillCheckStreakCountLabel;
+        private int greatSkillCheckCount;
+        private Label greatSkillCheckCountLabel;
+        private int goodSkillCheckCount;
+        private Label goodSkillCheckCountLabel;
 
         private System.Windows.Forms.Timer? newSkillCheckTimer = default;
 
@@ -34,14 +44,15 @@ namespace SkillCheckSimulator
         SoundPlayer skillCheckFailed2Sound;
         private const int SkillCheckStartDelayInMs = (int)(1000 * 1.12f);
 
-        public Game(Label scoreLabel, Label infoLabel)
+        public Game(Label scoreLabel, Label messageLabel, Label greatSkillCheckStreakCountLabel, Label goodSkillCheckStreakCountLabel, Label greatSkillCheckCountLabel, Label goodSkillCheckCountLabel)
         {
             this.score = 0;
             this.scoreLabel = scoreLabel;
-            this.scoreLabel.Text = $"Score: {this.score}";
-
-            this.infoLabel = infoLabel;
-            this.infoLabel.Text = "GHLF!!!";
+            this.messageLabel = messageLabel;
+            this.greatSkillCheckStreakCountLabel = greatSkillCheckStreakCountLabel;
+            this.goodSkillCheckStreakCountLabel = goodSkillCheckStreakCountLabel;
+            this.greatSkillCheckCountLabel = greatSkillCheckCountLabel;
+            this.goodSkillCheckCountLabel = goodSkillCheckCountLabel;
 
             this.skillCheckStartSound = new SoundPlayer(Path.Join("Resources", "Sounds", "skill_check_start.wav"));
             this.skillCheckStartSound.Load();
@@ -82,18 +93,31 @@ namespace SkillCheckSimulator
                 if (skillCheckTier == SkillCheck.SkillCheckTier.Great)
                 {
                     this.score += GreatSkillCheckScore;
-                    this.infoLabel.Text = "Great";
+                    ++this.greatSkillCheckStreakCount;
+                    ++this.greatSkillCheckCount;
+                    this.greatSkillCheckStreakCountLabel.Text = $"Great Skill Check Streak: {this.greatSkillCheckStreakCount}";
+                    this.greatSkillCheckCountLabel.Text = $"Great Skill Check: {this.greatSkillCheckCount}";
+                    this.messageLabel.Text = "Great";
                     this.skillCheckGreatSound.Play();
                 }
                 else if (skillCheckTier == SkillCheck.SkillCheckTier.Good)
                 {
                     this.score += GoodSkillCheckScore;
-                    this.infoLabel.Text = "Good";
+                    ++this.goodSkillCheckStreakCount;
+                    ++this.goodSkillCheckCount;
+                    this.goodSkillCheckStreakCountLabel.Text = $"Good Skill Check Streak: {this.goodSkillCheckStreakCount}";
+                    this.goodSkillCheckCountLabel.Text = $"Good Skill Check: {this.goodSkillCheckCount}";
+                    this.messageLabel.Text = "Good";
                     this.skillCheckGoodSound.Play();
                 }
                 else
                 {
-                    this.infoLabel.Text = "Miss";
+                    this.greatSkillCheckStreakCount = 0;
+                    this.greatSkillCheckStreakCountLabel.Text = $"Great Skill Check Streak: {this.greatSkillCheckStreakCount}";
+                    this.goodSkillCheckStreakCount = 0;
+                    this.messageLabel.Text = "Miss";
+                    this.goodSkillCheckStreakCountLabel.Text = $"Good Skill Check Streak: {this.goodSkillCheckStreakCount}";
+
                     this.skillCheckFailed1Sound.Play();
                 }
 
@@ -106,6 +130,11 @@ namespace SkillCheckSimulator
         {
             if (playSound && this.skillCheck != default && this.skillCheck.IsCompleted)
             {
+                this.greatSkillCheckStreakCount = 0;
+                this.greatSkillCheckStreakCountLabel.Text = $"Great Skill Check Streak: {this.greatSkillCheckStreakCount}";
+                this.goodSkillCheckStreakCount = 0;
+                this.goodSkillCheckStreakCountLabel.Text = $"Good Skill Check Streak: {this.goodSkillCheckStreakCount}";
+
                 this.skillCheckFailed2Sound.Play();
             }
 
