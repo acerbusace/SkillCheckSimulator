@@ -143,6 +143,7 @@
             // 
             // spineChillCheckBox
             // 
+            this.spineChillCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.spineChillCheckBox.AutoSize = true;
             this.spineChillCheckBox.Location = new System.Drawing.Point(578, 417);
             this.spineChillCheckBox.Name = "spineChillCheckBox";
