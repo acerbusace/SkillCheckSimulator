@@ -54,15 +54,15 @@ namespace SkillCheckSimulator
             this.greatSkillCheckCountLabel = greatSkillCheckCountLabel;
             this.goodSkillCheckCountLabel = goodSkillCheckCountLabel;
 
-            this.skillCheckStartSound = new SoundPlayer(Path.Join("Resources", "Sounds", "skill_check_start.wav"));
+            this.skillCheckStartSound = new SoundPlayer(Resources.skill_check_start);
             this.skillCheckStartSound.Load();
-            this.skillCheckGoodSound = new SoundPlayer(Path.Join("Resources", "Sounds", "skill_check_good.wav"));
+            this.skillCheckGoodSound = new SoundPlayer(Resources.skill_check_good);
             this.skillCheckGoodSound.Load();
-            this.skillCheckGreatSound = new SoundPlayer(Path.Join("Resources", "Sounds", "skill_check_great.wav"));
+            this.skillCheckGreatSound = new SoundPlayer(Resources.skill_check_great);
             this.skillCheckGreatSound.Load();
-            this.skillCheckFailed1Sound = new SoundPlayer(Path.Join("Resources", "Sounds", "skill_check_failed1.wav"));
+            this.skillCheckFailed1Sound = new SoundPlayer(Resources.skill_check_failed1);
             this.skillCheckFailed1Sound.Load();
-            this.skillCheckFailed2Sound = new SoundPlayer(Path.Join("Resources", "Sounds", "skill_check_failed2.wav"));
+            this.skillCheckFailed2Sound = new SoundPlayer(Resources.skill_check_failed2);
             this.skillCheckFailed2Sound.Load();
 
             this.CurrentSettings = new Settings
@@ -195,6 +195,12 @@ namespace SkillCheckSimulator
                 case Settings.SkillCheckType.DecisiveStrike:
                     greatSkillZoneSize = 15f;
                     break;
+            }
+
+            if (this.CurrentSettings.IsSpineChillOn)
+            {
+                greatSkillZoneSize *= (1f - 0.1f);
+                goodSkillZoneSize *= (1f - 0.1f);
             }
 
             return new SkillCheck(greatSkillZoneSize, goodSkillZoneSize);

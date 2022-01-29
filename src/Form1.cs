@@ -60,20 +60,6 @@ namespace SkillCheckSimulator
             }
         }
 
-        private void decisiveStrikeMouse_Click(object sender, MouseEventArgs e)
-        {
-            if (this.game.CurrentSettings.CurrentSkillCheckType == Game.Settings.SkillCheckType.Regular)
-            {
-                this.game.CurrentSettings.CurrentSkillCheckType = Game.Settings.SkillCheckType.DecisiveStrike;
-            }
-            else if (this.game.CurrentSettings.CurrentSkillCheckType == Game.Settings.SkillCheckType.DecisiveStrike)
-            {
-                this.game.CurrentSettings.CurrentSkillCheckType = Game.Settings.SkillCheckType.Regular;
-            }
-
-            this.scoreLabel.Focus();
-        }
-
         private void hexHuntressLullabyComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.game.CurrentSettings.HexHuntressLullabyState = this.game.CurrentSettings.HexHuntressLullabyMapping[(string)this.hexHuntressLullabyComboBox.SelectedItem];
@@ -82,6 +68,12 @@ namespace SkillCheckSimulator
         private void skillCheckTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.game.CurrentSettings.CurrentSkillCheckType = this.game.CurrentSettings.SkillCheckTypeMapping[(string)this.skillCheckTypeComboBox.SelectedItem];
+        }
+
+        private void spineChillCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            this.game.CurrentSettings.IsSpineChillOn = this.spineChillCheckBox.Checked;
+            this.scoreLabel.Focus();
         }
     }
 }

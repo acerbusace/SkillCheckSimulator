@@ -38,6 +38,7 @@
             this.goodSkillCheckStreakCountLabel = new System.Windows.Forms.Label();
             this.greatSkillCheckCountLabel = new System.Windows.Forms.Label();
             this.goodSkillCheckCountLabel = new System.Windows.Forms.Label();
+            this.spineChillCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // scoreLabel
@@ -140,11 +141,23 @@
             this.goodSkillCheckCountLabel.TabIndex = 12;
             this.goodSkillCheckCountLabel.Text = "Good Skill Check: 0";
             // 
+            // spineChillCheckBox
+            // 
+            this.spineChillCheckBox.AutoSize = true;
+            this.spineChillCheckBox.Location = new System.Drawing.Point(578, 417);
+            this.spineChillCheckBox.Name = "spineChillCheckBox";
+            this.spineChillCheckBox.Size = new System.Drawing.Size(82, 19);
+            this.spineChillCheckBox.TabIndex = 13;
+            this.spineChillCheckBox.Text = "Spine Chill";
+            this.spineChillCheckBox.UseVisualStyleBackColor = true;
+            this.spineChillCheckBox.CheckedChanged += new System.EventHandler(this.spineChillCheckBox_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.spineChillCheckBox);
             this.Controls.Add(this.goodSkillCheckCountLabel);
             this.Controls.Add(this.greatSkillCheckCountLabel);
             this.Controls.Add(this.goodSkillCheckStreakCountLabel);
@@ -177,5 +190,6 @@
         private Label goodSkillCheckStreakCountLabel;
         private Label greatSkillCheckCountLabel;
         private Label goodSkillCheckCountLabel;
+        private CheckBox spineChillCheckBox;
     }
 }
